@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1 Add new hobby
+  
+  form(action="/hobbies" method="POST")
+    label(for="title") Title*:
+    input(type="text" name="title" required)
+    
+    label(for="rating") Rating:
+    select(name="rating")
+      option(value="1") 1 🥕
+      option(value="2") 2 🥕🥕
+      option(value="3") 3 🥕🥕🥕
+      option(value="4") 4 🥕🥕🥕🥕
+      option(value="5") 5 🥕🥕🥕🥕🥕
+    
+    button(type="submit") Save

@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h1 All hobbies
+  .hobby-grid
+    each hobby in hobbies
+      .hobby-card
+        h2= hobby.title
+        p Rating: #{'🥕'.repeat(hobby.rating)}

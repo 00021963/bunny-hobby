@@ -1,0 +1,29 @@
+body{
+    font-family: "Arial";
+    background-color: lightcyan;
+    max-width: 1200px;
+    margin: 0 auto
+}
+
+nav{
+    background-color: white;
+    text-align: left;
+    padding: 20px;
+}
+
+nav a{
+    margin: 0 15px;
+}
+
+.hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .hobby-card {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+  }
