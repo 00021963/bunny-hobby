@@ -5,15 +5,27 @@ block content
   form(method="POST" action="/hobbies")
     .form-group
       label(for="title") Hobby name:
-      input(type="text" name="title" required)
-    
+      input(type="text" name="title" value=hobby.title)
+
+      //show errors
+    if errors && errors.length > 0
+      .warning-message
+        ul
+          each error in errors
+            li= error.msg
+
+    .form-group 
+      label(for="description") Description (optional):
+      textarea(name="description" rows="3")=hobby.description
+
     .form-group
       label(for="rating") Rating:
-      select(name="rating" required)
-        option(value="1") 1 (Just starting)
-        option(value="2") 2
-        option(value="3") 3
-        option(value="4") 4
-        option(value="5") 5 (Expert!)
+      select(name="rating")
+        option(value="1" selected=hobby.rating==1) 1 🥕 (Just starting)
+        option(value="2" selected=hobby.rating==2) 2 🥕🥕
+        option(value="3" selected=hobby.rating==3) 3 🥕🥕🥕
+        option(value="4" selected=hobby.rating==4) 4 🥕🥕🥕🥕
+        option(value="5" selected=hobby.rating==5) 5 🥕🥕🥕🥕🥕 (Expert!)
+
     
     button(type="submit") Save hobby

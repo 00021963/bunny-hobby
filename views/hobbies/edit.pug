@@ -6,11 +6,24 @@ block content
     .form-group
       label(for="title") Hobby name:
       input(type="text" name="title" value=hobby.title required)
-    
+
+    .form-group 
+      label(for="description") Description (optional):
+      textarea(name="description" rows="3")=hobby.description
+
+    if errors && errors.length > 0
+      .warning-message
+        ul
+          each error in errors
+            li= error.msg
+
     .form-group
       label(for="rating") Rating:
       select(name="rating" required)
-        each n in [1,2,3,4,5]
-          option(value=n selected=(n==hobby.rating))= n
+        option(value="1" selected=(hobby.rating==1)) 1 🥕
+        option(value="2" selected=(hobby.rating==2)) 2 🥕🥕
+        option(value="3" selected=(hobby.rating==3)) 3 🥕🥕🥕
+        option(value="4" selected=(hobby.rating==4)) 4 🥕🥕🥕🥕
+        option(value="5" selected=(hobby.rating==5)) 5 🥕🥕🥕🥕🥕
     
     button(type="submit") Update hobby

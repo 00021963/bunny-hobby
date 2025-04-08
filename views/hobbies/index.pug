@@ -8,7 +8,10 @@ block content
   each hobby in hobbies
     .hobby-card
       h3= hobby.title
-      p Rating: #{hobby.rating}/5
+      if hobby.description
+      p.description= hobby.description
+      p Rating: #{'🥕'.repeat(hobby.rating)} (#{hobby.rating}/5)
       a(href=`/hobbies/${hobby.id}/edit`) Edit
+
       form(method="POST" action=`/hobbies/${hobby.id}/delete` style="display: inline;")
-        button(type="submit") Delete
+        button(type="submit" onclick="return confirm('Really delete this hobby?')") Delete

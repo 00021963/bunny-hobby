@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
-
 const hobbiesRouter = require('./routes/hobbies');
 
 // Configuration
 app.set('view engine', 'pug');
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static('public'));
 
 // Success message middleware
