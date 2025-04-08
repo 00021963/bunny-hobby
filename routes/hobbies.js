@@ -5,16 +5,22 @@ const {body, validationResult} = require('express-validator');
 
 //Temporary data
 let hobbies = [
-    { id: 1, title: "Gardening", description: "Growing plants and flowers", rating: 3 },
-    { id: 2, title: "Sleeping", description: "Resting and recharging", rating: 5 }
+    { id: 1, title: "Gardening", description: "Growing organic tomatos and cucumbers", rating: 5 },
+    { id: 2, title: "Cooking", description: "I tried baking cookies the other day, and they actually turned out fun! Plus, the house smells amazing after.", rating: 3 },
+    { id: 3, title: "Painting", description: " I’m not great at it, but it’s really relaxing and lets me express how I feel.", rating: 2 },
+    { id: 4, title: "Puzzle solving", description: "Lately, I’ve gotten into doing jigsaw puzzles, and honestly, it’s way more fun than I expected. At first, it was just something I tried to pass time, but now I actually look forward to it. There’s something really calming about it—just sitting down, turning over all the pieces, and slowly putting things together. It kind of feels like giving your brain a break while still keeping it focused, if that makes sense.", rating: 4 }
   ];
 
 //CRUD
 
 //LIST ALL HOBBIES - read
 router.get('/', (req, res) => {
-  res.render('hobbies/index', { hobbies });
-});
+    let filteredHobbies = hobbies;
+    if (req.query.rating) {
+      filteredHobbies = hobbies.filter(h => h.rating == req.query.rating);
+    }
+    res.render('hobbies/index', { hobbies: filteredHobbies });
+  });
 
 //SHOW ADD FORM - create
 router.get('/new', (req, res) => {
@@ -109,5 +115,6 @@ router.post('/:id/delete', (req, res) => {
     hobbies = hobbies.filter(h => h.id !== parseInt(req.params.id));
     res.redirect('/hobbies');
   });
+
 
 module.exports = router;

@@ -5,13 +5,16 @@ block content
     p.success Hobby saved successfully!
   
   h1 All hobbies
+  
+
   each hobby in hobbies
     .hobby-card
       h3= hobby.title
       if hobby.description
-      p.description= hobby.description
-      p Rating: #{'🥕'.repeat(hobby.rating)} (#{hobby.rating}/5)
-      a(href=`/hobbies/${hobby.id}/edit`) Edit
+        p.description= hobby.description
 
-      form(method="POST" action=`/hobbies/${hobby.id}/delete` style="display: inline;")
-        button(type="submit" onclick="return confirm('Really delete this hobby?')") Delete
+      p Rating: #{'🥕'.repeat(hobby.rating)} (#{hobby.rating}/5)
+        .action-buttons
+          a.edit-btn(href=`/hobbies/${hobby.id}/edit`) Edit
+          form.delete-form(method="POST" action=`/hobbies/${hobby.id}/delete`)
+            button(type="submit" onclick="return confirm('Delete this hobby?')") Delete
