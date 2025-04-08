@@ -1,0 +1,16 @@
+extends ../layout.pug
+
+block content
+  h2 Edit hobby
+  form(method="POST" action=`/hobbies/${hobby.id}`)
+    .form-group
+      label(for="title") Hobby name:
+      input(type="text" name="title" value=hobby.title required)
+    
+    .form-group
+      label(for="rating") Rating:
+      select(name="rating" required)
+        each n in [1,2,3,4,5]
+          option(value=n selected=(n==hobby.rating))= n
+    
+    button(type="submit") Update hobby

@@ -1,28 +1,27 @@
 const express = require('express');
-const path = require('path');
 const app = express();
-const port = 3000;
 
-// 1. Middleware
+const hobbiesRouter = require('./routes/hobbies');
+
+// Configuration
+app.set('view engine', 'pug');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// 2. Template engine setup
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
+// Success message middleware
+app.use((req, res, next) => {
+    res.locals.success = req.query.success;
+    next();
+  });
 
-// 3. Import routes
-const hobbiesRouter = require('./routes/hobbies');
 
-// 4. Connect routes
+// Routes
 app.use('/hobbies', hobbiesRouter);
 
-// 5. Home route
+// Homepage redirects to hobbies list
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Bunny Hobbies' });
+  res.redirect('/hobbies');
 });
 
-// 6. Start server
-app.listen(port, () => {
-  console.log(`Working! Access at: http://localhost:${port}/hobbies/new`);
-});
+// Start server
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));

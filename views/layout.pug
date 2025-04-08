@@ -1,17 +1,12 @@
 doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel='stylesheet', href='/styles/style.css')
-        title Hubby Hutch
-    body
-      nav
-        a(href='/') Home
-        a(href='/hobbies') View all hobbies
-        a(href='/hobbies/new') Add new hobby
-
+html
+  head
+    title= title
+    link(rel='stylesheet' href='/style.css')
+  body
+    nav
+      a(href="/hobbies") All hobbies
+      a(href="/hobbies/new") Add new hobby
     block content
-
     footer
       p This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service

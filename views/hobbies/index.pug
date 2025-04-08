@@ -1,9 +1,14 @@
-extends ../layout
+extends ../layout.pug
 
 block content
+  if success
+    p.success Hobby saved successfully!
+  
   h1 All hobbies
-  .hobby-grid
-    each hobby in hobbies
-      .hobby-card
-        h2= hobby.title
-        p Rating: #{'🥕'.repeat(hobby.rating)}
+  each hobby in hobbies
+    .hobby-card
+      h3= hobby.title
+      p Rating: #{hobby.rating}/5
+      a(href=`/hobbies/${hobby.id}/edit`) Edit
+      form(method="POST" action=`/hobbies/${hobby.id}/delete` style="display: inline;")
+        button(type="submit") Delete
